@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Kalam codes</title>
-    <link>https://example.org/posts/</link>
+    <link>http://localhost:40383/posts/</link>
     <description>Recent content in Posts on Kalam codes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 08 Feb 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:40383/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello, I&#39;m Abdul Kalam</title>
-      <link>https://example.org/posts/hello-world/</link>
+      <link>http://localhost:40383/posts/hello-world/</link>
       <pubDate>Sun, 08 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/hello-world/</guid>
+      <guid>http://localhost:40383/posts/hello-world/</guid>
       <description>&lt;p&gt;Hi! 👋 I&amp;rsquo;m &lt;strong&gt;Abdul Kalam&lt;/strong&gt;, a computer science student at &lt;strong&gt;FAST University&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;I enjoy exploring &lt;strong&gt;software development&lt;/strong&gt;, &lt;strong&gt;cloud computing&lt;/strong&gt;, and &lt;strong&gt;data engineering&lt;/strong&gt;.&lt;br&gt;&#xA;I like working on projects that combine &lt;strong&gt;practical applications&lt;/strong&gt; with &lt;strong&gt;learning new technologies&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;On this blog, I&amp;rsquo;ll share my projects, experiments, and thoughts about &lt;strong&gt;programming, technology, and problem-solving&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Feel free to explore my posts and connect with me if you find something interesting!&lt;/p&gt;</description>
     </item>
   </channel>

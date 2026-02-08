@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Kalam codes</title>
-    <link>https://example.org/categories/</link>
+    <link>http://localhost:40383/categories/</link>
     <description>Recent content in Categories on Kalam codes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 08 Feb 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:40383/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Personal</title>
-      <link>https://example.org/categories/personal/</link>
+      <link>http://localhost:40383/categories/personal/</link>
       <pubDate>Sun, 08 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://example.org/categories/personal/</guid>
+      <guid>http://localhost:40383/categories/personal/</guid>
       <description></description>
     </item>
     <item>
       <title>Tech</title>
-      <link>https://example.org/categories/tech/</link>
+      <link>http://localhost:40383/categories/tech/</link>
       <pubDate>Sun, 08 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://example.org/categories/tech/</guid>
+      <guid>http://localhost:40383/categories/tech/</guid>
       <description></description>
     </item>
   </channel>
