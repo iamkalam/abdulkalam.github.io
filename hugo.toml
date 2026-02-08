@@ -1,0 +1,14 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Kalam codes'
+theme = "nomad-tech"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[params]
+  author = "Abdul Kalam"
+  logo = "Kalam Codes"
+  subtitle = "Computer Science Student | Software Development | Cloud Computing"
+  description = "Blog about programming, technology, and problem-solving"
