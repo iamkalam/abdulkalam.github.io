@@ -12,7 +12,7 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title">About <span className="text-gradient">Me</span></h2>
+        <h2 className="section-title">About <span className="text-gradient">Me</span></h2>
         </motion.div>
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }} className="about-grid">
@@ -37,7 +37,7 @@ export default function About() {
               <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>{education.institution}</p>
               <p style={{ color: 'var(--text-secondary)' }}>GPA: <strong style={{ color: 'var(--text-primary)' }}>{education.gpa}</strong></p>
             </div>
-            
+
             <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', marginTop: '2.5rem' }}>Certifications</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {certificates.map((cert, idx) => (

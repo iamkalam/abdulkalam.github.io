@@ -41,7 +41,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '100px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.5rem', fontWeight: 500 }}>
+          <div style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '100px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', color: 'var(--text-secondary)', fontSize: '1.2rem', marginBottom: '1.5rem', fontWeight: 500 }}>
             Hello, I am {personalDetails.name} 👋
           </div>
           
@@ -61,6 +61,24 @@ export default function Hero() {
               borderRadius: '8px', fontWeight: 600, fontSize: '1rem'
             }}>
               View Work <ArrowRight size={18} />
+            </a>
+
+            <a
+              href="/Abdul_Kalam_CV.pdf"
+              download
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.875rem 2rem',
+                background: 'var(--accent-gradient)',
+                color: '#fff',
+                borderRadius: '8px',
+                fontWeight: 600,
+                fontSize: '1rem'
+              }}
+            >
+              Download CV
             </a>
             
             <div style={{ display: 'flex', gap: '1rem', marginLeft: '1rem' }}>

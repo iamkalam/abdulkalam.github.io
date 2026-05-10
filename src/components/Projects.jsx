@@ -1,11 +1,121 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { projects } from '../data';
+import { personalDetails, projects } from '../data';
 import { ExternalLink, FolderGit2 } from 'lucide-react';
 import { GithubIcon } from './Icons';
+
+function timeAgo(isoDate) {
+  const date = new Date(isoDate);
+  if (Number.isNaN(date.getTime())) {
+    return '';
+  }
+
+  const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (days > 0) {
+    return `${days}d ago`;
+  }
+  if (hours > 0) {
+    return `${hours}h ago`;
+  }
+  if (minutes > 0) {
+    return `${minutes}m ago`;
+  }
+
+  return 'Just now';
+}
+
+function formatEvent(event) {
+  const repo = event.repo?.name || 'repository';
+  const repoUrl = event.repo?.name ? `https://github.com/${event.repo.name}` : `https://github.com/${personalDetails.github}`;
+  const eventTime = timeAgo(event.created_at);
+
+  switch (event.type) {
+    case 'PushEvent': {
+      const commitCount = event.payload?.commits?.length || 0;
+      const commitLabel = commitCount === 1 ? '1 commit' : `${commitCount} commits`;
+      return {
+        title: `${commitLabel} to ${repo}`,
+        subtitle: eventTime,
+        url: repoUrl
+      };
+    }
+    case 'CreateEvent': {
+      const refType = event.payload?.ref_type || 'item';
+      const refName = event.payload?.ref ? ` ${event.payload.ref}` : '';
+      return {
+        title: `Created ${refType}${refName} in ${repo}`,
+        subtitle: eventTime,
+        url: repoUrl
+      };
+    }
+    case 'IssuesEvent': {
+      const action = event.payload?.action || 'updated';
+      return {
+        title: `${action} issue in ${repo}`,
+        subtitle: eventTime,
+        url: repoUrl
+      };
+    }
+    case 'PullRequestEvent': {
+      const action = event.payload?.action || 'updated';
+      return {
+        title: `${action} pull request in ${repo}`,
+        subtitle: eventTime,
+        url: repoUrl
+      };
+    }
+    default:
+      return {
+        title: `${event.type.replace('Event', '')} in ${repo}`,
+        subtitle: eventTime,
+        url: repoUrl
+      };
+  }
+}
 
 export default function Projects() {
   const featuredProject = projects.find((project) => project.featured);
   const otherProjects = projects.filter((project) => !project.featured);
+  const [activity, setActivity] = useState([]);
+  const [activityError, setActivityError] = useState('');
+  const [isLoadingActivity, setIsLoadingActivity] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadActivity = async () => {
+      setIsLoadingActivity(true);
+      setActivityError('');
+      try {
+        const response = await fetch(`https://api.github.com/users/${personalDetails.github}/events/public?per_page=6`);
+        if (!response.ok) {
+          throw new Error('GitHub API error');
+        }
+        const data = await response.json();
+        if (isMounted) {
+          setActivity(Array.isArray(data) ? data.slice(0, 6) : []);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setActivityError('Unable to load GitHub activity right now.');
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoadingActivity(false);
+        }
+      }
+    };
+
+    loadActivity();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <section id="projects" className="section" style={{ background: 'var(--bg-surface)' }}>
@@ -222,6 +332,79 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ marginTop: '3rem' }}
+        >
+          <div className="glass-panel" style={{ padding: '2rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <GithubIcon size={24} />
+                <h3 style={{ fontSize: '1.4rem' }}>Live GitHub Activity</h3>
+              </div>
+              <a
+                href={`https://github.com/${personalDetails.github}`}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--text-secondary)', fontWeight: 600 }}
+              >
+                View Profile
+              </a>
+            </div>
+
+            <div style={{ marginTop: '1.5rem', display: 'grid', gap: '1rem' }}>
+              {isLoadingActivity && (
+                <p style={{ color: 'var(--text-secondary)' }}>Loading recent activity...</p>
+              )}
+
+              {!isLoadingActivity && activityError && (
+                <p style={{ color: 'var(--text-secondary)' }}>{activityError}</p>
+              )}
+
+              {!isLoadingActivity && !activityError && activity.length === 0 && (
+                <p style={{ color: 'var(--text-secondary)' }}>No recent public activity found.</p>
+              )}
+
+              {!isLoadingActivity && !activityError && activity.length > 0 && (
+                <div style={{ display: 'grid', gap: '1rem' }}>
+                  {activity.map((event) => {
+                    const formatted = formatEvent(event);
+                    return (
+                      <a
+                        key={event.id}
+                        href={formatted.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          gap: '1rem',
+                          padding: '1rem 1.25rem',
+                          borderRadius: '12px',
+                          border: '1px solid var(--glass-border)',
+                          background: 'rgba(255, 255, 255, 0.02)',
+                          color: 'inherit'
+                        }}
+                      >
+                        <span style={{ fontWeight: 600 }}>{formatted.title}</span>
+                        <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{formatted.subtitle}</span>
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
+
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                Activity updates from the public GitHub API and may be rate limited.
+              </p>
+            </div>
+          </div>
+        </motion.div>
 
         <style>{`
           @media (max-width: 992px) {

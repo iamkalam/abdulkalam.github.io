@@ -32,22 +32,22 @@ export const skills = [
 
 export const experience = [
   {
-    title: "AI/ML & Data Engineering Intern/Engineer",
-    company: "TechScape",
-    period: "06/2021 – 08/2024",
+    title: "AI/ML & DevOps",
+    company: "CloudLem Pvt ltd",
+    period: "11/2025 – 03/2026",
     responsibilities: [
       "Built and deployed machine learning models for predictive analytics and classification tasks, leveraging Python, scikit-learn, TensorFlow, and OpenCV.",
       "Designed and trained models on real-world datasets, performing data preprocessing, feature engineering, and hyperparameter tuning.",
       "Worked on computer vision tasks such as image recognition and enhancement using deep learning and OpenCV.",
       "Created end-to-end AI pipelines: data collection, cleaning, model training, evaluation, and deployment.",
-      "Developed ETL (Extract, Transform, Load) pipelines for ingesting, cleaning, and transforming large-scale structured and unstructured datasets.",
-      "Optimized SQL queries and implemented efficient data storage solutions to support AI workflows and reporting."
+    "Built CI/​CD pipelines (Jenkins, GitLab) to automate training, testing, and deployment of ML models",
+    "Implemented Infrastructure as Code (Terraform) and monitoring to ensure reliable, production-ready Al systems",
     ]
   },
   {
-    title: "Developer II",
+    title: "Software Developer II",
     company: "Graphail islamabad",
-    period: "01/2022 – 08/2023",
+    period: "05/2022 – 05/2023",
     responsibilities: [
       "Coded websites using HTML, CSS, JavaScript, and jQuery, including React.js.",
       "Oversaw technical issues and resolved troubleshooting requests.",
@@ -141,7 +141,7 @@ export const projects = [
 ];
 
 export const certificates = [
-  { title: "Advance Python Data Camp", date: "June 202X" },
+  { title: "Advance Python Data Camp"},
   { title: "Modernizing Data Lakes and Data Warehouses with Google Cloud", date: "Ongoing" },
   { title: "Data Engineering in python and Sql", date: "May 2025" }
 ];
