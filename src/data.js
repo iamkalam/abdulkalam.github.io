@@ -9,7 +9,7 @@ export const personalDetails = {
   tagline: "Building scalable AI solutions and intelligent data pipelines.",
   email: "calamabdul17@gmail.com",
   phone: "+92 310 8367902",
-  location: "Islamabad, PIS",
+  location: "Islamabad, Pakistan",
   github: "iamkalam",
   summary: "Computer Science student building data-driven products across ML, analytics, and full-stack apps. I design pipelines, models, and dashboards that turn messy data into clear business decisions, using Python, SQL, and modern web tools."
 };
