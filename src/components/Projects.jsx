@@ -403,6 +403,26 @@ export default function Projects() {
                 Activity updates from the public GitHub API and may be rate limited.
               </p>
             </div>
+
+            <div style={{ marginTop: '1.5rem' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '0.75rem' }}>
+                Contributions (last year)
+              </p>
+              <div style={{
+                borderRadius: '16px',
+                border: '1px solid var(--glass-border)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                padding: '1rem',
+                overflowX: 'auto'
+              }}>
+                <img
+                  src={`https://ghchart.rshah.org/39d353/${personalDetails.github}`}
+                  alt={`GitHub contribution graph for ${personalDetails.github}`}
+                  style={{ display: 'block', width: '100%', minWidth: '680px' }}
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
         </motion.div>
 
